@@ -1,0 +1,17 @@
+# Ambiente Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Ambiente conda/venv
+env/
+venv/
+
+# Script intermediário do nbconvert (usado só p/ o pipreqs, não é fonte)
+script_biodiesel.py
+
+# Sistema
+.DS_Store
+
+# Streamlit
+.streamlit/
