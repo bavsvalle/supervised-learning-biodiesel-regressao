@@ -73,11 +73,9 @@ INAPTA fica muito mais próxima de BAIXADA do que de ATIVA — confirma que excl
 ## ⚙️ Como Rodar
 
 ```bash
-conda env create -f environment.yml
-conda activate conda-varejo-log
+pip install -r requirements.txt
 jupyter notebook notebooks/01_exploracao_preditores.ipynb
 ```
-
 Os notebooks devem ser executados em ordem (01 → 06); cada um consome os artefatos persistidos pelo anterior.
 
 ## 📁 Estrutura
@@ -107,5 +105,5 @@ Os notebooks devem ser executados em ordem (01 → 06); cada um consome os artef
     │   ├── cruzamento_simples.py
     │   ├── redefinir_alvo.py
     │   └── dataset_modelagem.py
-    ├── environment.yml
+    ├── requirements.txt
     └── README.md
