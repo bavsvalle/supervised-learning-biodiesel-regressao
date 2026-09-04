@@ -9,7 +9,7 @@
 
 ### 1. Coleta dos Dados
 
-- **Fonte:** [Dados Abertos de CNPJ](https://dados.gov.br/dados/conjuntos-dados/cadastro-nacional-da-pessoa-juridica-cnpj) — Receita Federal
+- **Fonte:** [Dados Abertos de CNPJ](https://dados.gov.br/dados/conjuntos-dados/cadastro-nacional-da-pessoa-juridica---cnpj) — Receita Federal
   - Arquivos: Estabelecimentos, Empresas, Simples/MEI, Motivos e Naturezas (tabelas oficiais de referência código → descrição)
   - Extração de referência: 08/08/2026
   - Coorte: estabelecimentos com CNAE principal na divisão 47 (Comércio Varejista), abertos entre 2017 e 2019 → 1.911.883 estabelecimentos
