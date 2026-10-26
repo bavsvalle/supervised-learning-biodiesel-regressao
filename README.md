@@ -15,7 +15,11 @@
  
 **O resultado:** O modelo final explica cerca de metade da variação (R² de 0,5031, na escala Box-Cox, próxima do logaritmo). O óleo de soja é a matéria-prima com maior efeito positivo, e o Sul é a única região acima do Centro-Oeste.
  
-**A limitação que mais importa para o negócio:** O modelo subestima bastante os registros de volume grande: no gráfico de valores reais contra previstos, as previsões não passam de cerca de 30 mil m³, enquanto os valores reais chegam a cerca de 150 mil m³. Não investiguei a causa. Por isso, o resultado serve como referência de padrão entre matérias-primas e regiões, e não como previsão confiável de volumes grandes.
+**A limitação que mais importa para o negócio:** O modelo subestima bastante os registros de volume grande: no gráfico abaixo (valores reais contra previstos), as previsões não passam de cerca de 30 mil m³, enquanto os valores reais chegam a cerca de 150 mil m³. Não investiguei a causa. Por isso, o resultado serve como referência de padrão entre matérias-primas e regiões, e não como previsão confiável de volumes grandes.
+
+<p align="center">
+  <img src="outputs/reais_vs_previstos_step_bc_biodiesel.png" alt="Valores reais contra valores previstos" width="500">
+</p>
  
 Outras ressalvas: o R² do modelo final está na escala transformada da variável resposta, e todas as métricas foram calculadas na mesma amostra usada para estimar o modelo (veja [Limitações](#️-limitações)).
  
@@ -65,7 +69,7 @@ O modelo final manteve 13 variáveis, todas significativas a 1% (p ≤ 0,008). C
  
 ## ⚠️ Limitações
  
-- **Subestimação dos registros grandes.** As previsões ficam em até cerca de 30 mil m³, e os valores reais chegam a cerca de 150 mil m³. Não investiguei a causa. Uma hipótese é a retransformação do Box-Cox (desigualdade de Jensen), mas não a testei, e o tamanho da diferença sugere que pode haver um problema de ajuste na cauda.
+- **Subestimação dos registros grandes.** As previsões ficam em até cerca de 30 mil m³ (máximo de 31.437 m³), e os valores reais chegam a cerca de 150 mil m³ (máximo de 150.567 m³). O gráfico é gerado no notebook, na célula logo após o gráfico de resíduos. Não investiguei a causa. Uma hipótese é a retransformação do Box-Cox (desigualdade de Jensen), mas não a testei, e o tamanho da diferença sugere que pode haver um problema de ajuste na cauda.
 - **Não fiz validação fora da amostra.** R², testes de normalidade e homocedasticidade foram calculados na mesma base em que estimei o modelo.
 - **Normalidade ainda rejeitada depois do Box-Cox.** O W do Shapiro-Francia subiu de 0,76295 para 0,98078, mas o p-valor continua baixo (5,1e-24).
 - **Breusch-Pagan só no modelo final** (p = 0,0841, não rejeita homocedasticidade a 5%). Calculei com a função do material do curso e ainda não comparei com a implementação do `statsmodels`. Pelo que verifiquei, o p-valor dessa função não segue o cálculo padrão da cauda do qui-quadrado, e com o cálculo padrão ele ficaria mais perto de 0,07. A conclusão a 5% se mantém, mas o valor exato precisa ser conferido.
