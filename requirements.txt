@@ -1,9 +1,10 @@
 matplotlib==3.11.0
 numpy==2.4.6
-pandas==3.0.3
+pandas==2.3.3
 scipy==1.17.1
 seaborn==0.13.2
 statsmodels==0.14.6
 statstests==1.0.9
 streamlit==1.61.1
 Unidecode==1.4.0
+notebook==7.6.3
