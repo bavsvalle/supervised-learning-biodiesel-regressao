@@ -29,6 +29,7 @@ Outras ressalvas: o R² do modelo final está na escala transformada da variáve
 - **Arquivo:** Matéria-Prima utilizada na Produção de Biodiesel (CSV)
 - **Período:** jan/2017 a ago/2023 (80 meses)
 - **Tamanho:** 4.745 linhas, uma por mês, estado e produto (14 produtos, 14 estados e 5 regiões)
+
 ### 2. Metodologia
  
 - Limpeza e padronização dos dados (Python + Pandas).
@@ -39,6 +40,7 @@ Outras ressalvas: o R² do modelo final está na escala transformada da variáve
 - Apliquei a transformação **Box-Cox** em Y (λ ≈ 0,054, próximo do log natural). Para isso tirei 13 linhas com `quantidade_m3 = 0`, ficando com 4.732.
 - Fiz um segundo Stepwise sobre o modelo transformado.
 - Rodei o **Breusch-Pagan** no modelo final para testar a homocedasticidade.
+
 ### 3. Resultado do Modelo Final
  
 | Modelo | Descrição | R² | Escala de Y |
@@ -58,6 +60,7 @@ O modelo final manteve 13 variáveis, todas significativas a 1% (p ≤ 0,008). C
 - **Sul** é a única região acima do Centro-Oeste. Norte e Sudeste ficam abaixo, e o Nordeste saiu no Stepwise por não ser significativo.
 - **O Box-Cox reduziu bastante a assimetria e a curtose dos resíduos** (assimetria de 2,69 para −0,54; curtose de 17,7 para 3,4), mas o Shapiro-Francia ainda rejeita a normalidade.
 - A outra metade da variação pode vir de fatores que não estão no modelo, como preço de commodities, safra agrícola e política de incentivo. Não testei essas hipóteses.
+
 ---
  
 ## ⚠️ Limitações
@@ -88,17 +91,23 @@ streamlit run app_previsao_biodiesel.py
 <p align="center">
   <img src="assets/screenshot_app.png" alt="App de previsão" width="600">
 </p>
+
 ---
  
 ## ⚙️ Como Rodar
  
+Testado com Python 3.11.
+
 ```bash
 pip install -r requirements.txt
 jupyter notebook src/script_biodiesel.ipynb
 ```
+
+O `requirements.txt` fixa o pandas em **2.3.3** de propósito: com o pandas 3, o `stepwise` do pacote `statstests` usado no notebook nunca remove variável nenhuma e fica em loop infinito.
  
 <details>
 <summary><b>📁 Estrutura do repositório</b></summary>
+
     supervised-learning-biodiesel-regressao/
     ├── data/
     │   └── biodiesel-materia-prima.csv
