@@ -91,6 +91,8 @@ O app avisa quando o produto ou a região escolhida foi removida pelo Stepwise (
 cd src
 streamlit run app_previsao_biodiesel.py
 ```
+
+> O modelo foi salvo com pandas 3, e o `requirements.txt` fixa o pandas 2.3.3 (para o notebook). Para rodar o app sem conflito, use o Docker: veja [Como executar com Docker](#-como-executar-com-docker).
  
 <p align="center">
   <img src="assets/screenshot_app.png" alt="App de previsão" width="600">
@@ -108,6 +110,26 @@ jupyter notebook src/script_biodiesel.ipynb
 ```
 
 O `requirements.txt` fixa o pandas em **2.3.3** de propósito: com o pandas 3, o `stepwise` do pacote `statstests` usado no notebook nunca remove variável nenhuma e fica em loop infinito.
+
+### 🐳 Como executar com Docker
+
+Roda só o app Streamlit, sem precisar instalar Python nem as bibliotecas. Precisa do [Docker](https://docs.docker.com/get-docker/) instalado e aberto.
+
+```bash
+docker build -t biodiesel-app .
+```
+
+```bash
+docker run -d --name biodiesel -p 8501:8501 biodiesel-app
+```
+
+Depois abra [http://localhost:8501](http://localhost:8501) no navegador. Para parar e remover o container:
+
+```bash
+docker rm -f biodiesel
+```
+
+A imagem usa o `requirements-app.txt` (só as 4 bibliotecas do app), e não o `requirements.txt`. O modelo `outputs/modelo_biodiesel_final.pkl` foi salvo com **pandas 3**, então o app precisa do pandas 3 (`requirements-app.txt` fixa o 3.0.6). Com o `requirements.txt` (pandas 2.3.3, usado no notebook), o app não consegue abrir o modelo.
  
 <details>
 <summary><b>📁 Estrutura do repositório</b></summary>
